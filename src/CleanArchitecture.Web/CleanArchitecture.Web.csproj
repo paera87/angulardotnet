@@ -3,11 +3,15 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>CleanArchitecture.Web</AssemblyName>
-    <OutputType>Exe</OutputType>
-    <PackageId>CleanArchitecture.Web</PackageId>
-    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+	<PackageId>CleanArchitecture.Web</PackageId>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
 	<SpaRoot>ClientApp\</SpaRoot>
+	<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+	<!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
   </PropertyGroup>
+  
   <ItemGroup>
 	<!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
@@ -47,8 +51,6 @@
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
   </Target>
   
-  
-  
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
 	<!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
@@ -72,8 +74,5 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\lib\" />
-  </ItemGroup>
 
 </Project>

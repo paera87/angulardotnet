@@ -32,44 +32,44 @@ namespace CleanArchitecture.Tests.Integration.Data
         }
 
         [Fact]
-        public void AddItemAndSetId()
+        public async void AddItemAndSetId()
         {
             var repository = GetRepository();
             var item = new ToDoItemBuilder().Build();
 
-            repository.Add(item);
+            await repository.AddAsync(item);
 
-            var newItem = repository.List<ToDoItem>().FirstOrDefault();
-
+            var toDoItems = await repository.ListAsync<ToDoItem>();
+            var newItem = toDoItems.FirstOrDefault();
             Assert.Equal(item, newItem);
             Assert.True(newItem?.Id > 0);
         }
 
         [Fact]
-        public void UpdateItemAfterAddingIt()
+        public async void UpdateItemAfterAddingIt()
         {
             // add an item
             var repository = GetRepository();
             var initialTitle = Guid.NewGuid().ToString();
             var item = new ToDoItemBuilder().Title(initialTitle).Build();
 
-            repository.Add(item);
+            await repository.AddAsync(item);
 
             // detach the item so we get a different instance
             _dbContext.Entry(item).State = EntityState.Detached;
 
             // fetch the item and update its title
-            var newItem = repository.List<ToDoItem>()
-                .FirstOrDefault(i => i.Title == initialTitle);
+            var todoItems = await repository.ListAsync<ToDoItem>();
+            var newItem = todoItems.FirstOrDefault(i => i.Title == initialTitle);
             Assert.NotNull(newItem);
             Assert.NotSame(item, newItem);
             var newTitle = Guid.NewGuid().ToString();
             newItem.Title = newTitle;
 
             // Update the item
-            repository.Update(newItem);
-            var updatedItem = repository.List<ToDoItem>()
-                .FirstOrDefault(i => i.Title == newTitle);
+            await repository.UpdateAsync(newItem);
+            todoItems = await repository.ListAsync<ToDoItem>();
+            var updatedItem= todoItems.FirstOrDefault(i => i.Title == newTitle);
 
             Assert.NotNull(updatedItem);
             Assert.NotEqual(item.Title, updatedItem.Title);
@@ -77,19 +77,19 @@ namespace CleanArchitecture.Tests.Integration.Data
         }
 
         [Fact]
-        public void DeleteItemAfterAddingIt()
+        public async void DeleteItemAfterAddingIt()
         {
             // add an item
             var repository = GetRepository();
             var initialTitle = Guid.NewGuid().ToString();
             var item = new ToDoItemBuilder().Title(initialTitle).Build();
-            repository.Add(item);
+            await repository.AddAsync(item);
 
             // delete the item
-            repository.Delete(item);
+            await repository.DeleteAsync(item);
 
             // verify it's no longer there
-            Assert.DoesNotContain(repository.List<ToDoItem>(),
+            Assert.DoesNotContain(await repository.ListAsync<ToDoItem>(),
                 i => i.Title == initialTitle);
         }
 

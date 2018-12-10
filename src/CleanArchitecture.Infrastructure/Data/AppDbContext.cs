@@ -1,6 +1,8 @@
 ﻿using CleanArchitecture.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.SharedKernel;
 
@@ -16,11 +18,32 @@ namespace CleanArchitecture.Infrastructure.Data
             _dispatcher = dispatcher;
         }
 
-        public DbSet<ToDoItem> ToDoItems { get; set; }
-
-        public override int SaveChanges()
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            int result = base.SaveChanges();
+            //Write Fluent API configurations here
+            modelBuilder.Entity<PlayerTraining>()
+                .HasKey(playerTraining => new {playerTraining.PlayerId, playerTraining.TrainingId});
+            modelBuilder.Entity<PlayerTraining>()
+                .HasOne<Player>(s => s.Player)
+                .WithMany(g => g.PlayerTrainings)
+                .HasForeignKey(s => s.PlayerId);
+
+            modelBuilder.Entity<PlayerTraining>()
+                .HasOne<Training>(s => s.Training)
+                .WithMany(g => g.PlayersTrainings)
+                .HasForeignKey(s => s.TrainingId);
+
+
+        }
+
+        public DbSet<ToDoItem> ToDoItems { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Training> Trainings{ get; set; }
+        public DbSet<PlayerTraining> PlayerTrainings{ get; set; }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            int result = await base.SaveChangesAsync(cancellationToken);
 
             // dispatch events only if save was successful
             var entitiesWithEvents = ChangeTracker.Entries<BaseEntity>()

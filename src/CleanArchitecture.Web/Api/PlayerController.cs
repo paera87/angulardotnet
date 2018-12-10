@@ -11,11 +11,11 @@ namespace CleanArchitecture.Web.Api
 {
     [Route("api/[controller]")]
     [ValidateModel]
-    public class ToDoItemsController : Controller
+    public class PlayerController : Controller
     {
         private readonly IRepository _repository;
 
-        public ToDoItemsController(IRepository repository)
+        public PlayerController(IRepository repository)
         {
             _repository = repository;
         }
@@ -25,19 +25,20 @@ namespace CleanArchitecture.Web.Api
         public async Task<IActionResult> List()
         {
             await DatabasePopulator.PopulateDatabaseAsync(_repository);
-            var items = await _repository.ListAsync<ToDoItem>();
-            return Ok(items.Select(ToDoItemDTO.FromToDoItem));
+            var items = await _repository.ListAsync<Player>();
+            return Ok(items.Select(PlayerDto.FromToDoItem));
         }
 
         // GET: api/ToDoItems
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var item = ToDoItemDTO.FromToDoItem(await _repository.GetByIdAsync<ToDoItem>(id));
+            var item = PlayerDto.FromToDoItem(await _repository.GetByIdAsync<Player>(id));
             return Ok(item);
         }
 
         // POST: api/ToDoItems
+        //todo
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ToDoItemDTO item)
         {
@@ -50,6 +51,7 @@ namespace CleanArchitecture.Web.Api
             return Ok(ToDoItemDTO.FromToDoItem(todoItem));
         }
 
+        //todo - add to training kanske.
         [HttpPatch("{id:int}/complete")]
         public async Task<IActionResult> Complete(int id)
         {
