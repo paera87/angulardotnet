@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.Core.SharedKernel;
+﻿using Hogstorp.Core.SharedKernel;
 
-namespace CleanArchitecture.Core.Interfaces
+namespace Hogstorp.Core.Interfaces
 {
     public interface IDomainEventDispatcher
     {

@@ -1,12 +1,12 @@
-﻿using CleanArchitecture.Core.Interfaces;
-using CleanArchitecture.Infrastructure.Data;
-using CleanArchitecture.Web;
+﻿using Hogstorp.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using Hogstorp.Core.Interfaces;
+using Hogstorp.Infrastructure.Data;
 
 namespace CleanArchitecture.Tests.Integration.Web
 {

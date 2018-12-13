@@ -1,8 +1,8 @@
 ﻿using Ardalis.GuardClauses;
-using CleanArchitecture.Core.Events;
-using CleanArchitecture.Core.Interfaces;
+using Hogstorp.Core.Events;
+using Hogstorp.Core.Interfaces;
 
-namespace CleanArchitecture.Core.Services
+namespace Hogstorp.Core.Services
 {
     public class ToDoItemService : IHandle<ToDoItemCompletedEvent>
     {

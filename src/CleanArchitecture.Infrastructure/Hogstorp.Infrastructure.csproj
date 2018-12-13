@@ -1,13 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <AssemblyName>CleanArchitecture.Infrastructure</AssemblyName>
+    <AssemblyName>Hogstorp.Infrastructure</AssemblyName>
     <PackageId>CleanArchitecture.Infrastructure</PackageId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CleanArchitecture.Core\CleanArchitecture.Core.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.8.1" />
@@ -16,5 +12,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CleanArchitecture.Core\Hogstorp.Core.csproj" />
   </ItemGroup>
 </Project>

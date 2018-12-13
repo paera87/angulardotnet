@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Core.Entities;
+﻿using Hogstorp.Core.Entities;
 
 namespace CleanArchitecture.Tests
 {

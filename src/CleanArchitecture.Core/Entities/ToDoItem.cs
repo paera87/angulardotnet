@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Core.Events;
-using CleanArchitecture.Core.SharedKernel;
+﻿using Hogstorp.Core.Events;
+using Hogstorp.Core.SharedKernel;
 
-namespace CleanArchitecture.Core.Entities
+namespace Hogstorp.Core.Entities
 {
     public class ToDoItem : BaseEntity
     {

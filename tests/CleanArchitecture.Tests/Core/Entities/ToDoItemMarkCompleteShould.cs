@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.Core.Events;
-using System.Linq;
+﻿using System.Linq;
+using Hogstorp.Core.Events;
 using Xunit;
 
 namespace CleanArchitecture.Tests.Core.Entities

@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Core.Entities;
-using CleanArchitecture.Infrastructure.Data;
+﻿using Hogstorp.Core.Entities;
+using Hogstorp.Infrastructure.Data;
 
-namespace CleanArchitecture.Web
+namespace Hogstorp.Web
 {
     public static class SeedData
     {

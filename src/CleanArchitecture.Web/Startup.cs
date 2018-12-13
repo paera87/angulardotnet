@@ -1,7 +1,9 @@
-﻿using Autofac;
+﻿using System;
+using System.Reflection;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using CleanArchitecture.Core.SharedKernel;
-using CleanArchitecture.Infrastructure.Data;
+using Hogstorp.Core.SharedKernel;
+using Hogstorp.Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,10 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.Reflection;
 
-namespace CleanArchitecture.Web
+namespace Hogstorp.Web
 {
     public class Startup
     {

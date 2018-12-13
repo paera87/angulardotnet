@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
-    <AssemblyName>CleanArchitecture.Web</AssemblyName>
+    <AssemblyName>Hogstorp.Web</AssemblyName>
 	<PackageId>CleanArchitecture.Web</PackageId>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
@@ -10,6 +10,7 @@
 	<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
 	<!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <RootNamespace>Hogstorp.Web</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>
@@ -25,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CleanArchitecture.Core\CleanArchitecture.Core.csproj" />
-    <ProjectReference Include="..\CleanArchitecture.Infrastructure\CleanArchitecture.Infrastructure.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Core\Hogstorp.Core.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Infrastructure\Hogstorp.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

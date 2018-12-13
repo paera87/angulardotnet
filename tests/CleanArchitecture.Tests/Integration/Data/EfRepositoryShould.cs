@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Core.Entities;
-using CleanArchitecture.Core.Interfaces;
-using CleanArchitecture.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using System;
 using System.Linq;
+using Hogstorp.Core.Entities;
+using Hogstorp.Core.Interfaces;
+using Hogstorp.Infrastructure.Data;
 using Xunit;
 
 namespace CleanArchitecture.Tests.Integration.Data

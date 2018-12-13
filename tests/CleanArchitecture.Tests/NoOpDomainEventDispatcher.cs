@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.Core.Interfaces;
-using CleanArchitecture.Core.SharedKernel;
+﻿using Hogstorp.Core.Interfaces;
+using Hogstorp.Core.SharedKernel;
 
 namespace CleanArchitecture.Tests
 {

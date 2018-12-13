@@ -1,9 +1,4 @@
-﻿using System.Data;
-using CleanArchitecture.Core.Events;
-using CleanArchitecture.Core.SharedKernel;
-
-
-namespace CleanArchitecture.Core.Entities
+﻿namespace Hogstorp.Core.Entities
 {
     public class PlayerTraining //: BaseEntity
     {

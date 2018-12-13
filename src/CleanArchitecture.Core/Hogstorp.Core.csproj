@@ -2,8 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>CleanArchitecture.Core</AssemblyName>
+    <AssemblyName>Hogstorp.Core</AssemblyName>
     <PackageId>CleanArchitecture.Core</PackageId>
+    <RootNamespace>Hogstorp.Core</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

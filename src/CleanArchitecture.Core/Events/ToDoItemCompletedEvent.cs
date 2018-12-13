@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Core.Entities;
-using CleanArchitecture.Core.SharedKernel;
+﻿using Hogstorp.Core.Entities;
+using Hogstorp.Core.SharedKernel;
 
-namespace CleanArchitecture.Core.Events
+namespace Hogstorp.Core.Events
 {
     public class ToDoItemCompletedEvent : BaseDomainEvent
     {

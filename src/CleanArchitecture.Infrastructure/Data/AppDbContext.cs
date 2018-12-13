@@ -1,12 +1,12 @@
-﻿using CleanArchitecture.Core.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using CleanArchitecture.Core.Entities;
-using CleanArchitecture.Core.SharedKernel;
+using Hogstorp.Core.Entities;
+using Hogstorp.Core.Interfaces;
+using Hogstorp.Core.SharedKernel;
+using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Infrastructure.Data
+namespace Hogstorp.Infrastructure.Data
 {
     public class AppDbContext : DbContext
     {

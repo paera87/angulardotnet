@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.Web;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+using Hogstorp.Web;
 using Xunit;
 
 namespace CleanArchitecture.Tests.Integration.Web
@@ -21,7 +21,7 @@ namespace CleanArchitecture.Tests.Integration.Web
             response.EnsureSuccessStatusCode();
             string stringResponse = await response.Content.ReadAsStringAsync();
 
-            Assert.Contains("CleanArchitecture.Web", stringResponse);
+            Assert.Contains("Hogstorp.Web", stringResponse);
         }
     }
 }

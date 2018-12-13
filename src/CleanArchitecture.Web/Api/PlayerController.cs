@@ -1,13 +1,13 @@
-﻿using CleanArchitecture.Core.Entities;
-using CleanArchitecture.Core.Interfaces;
-using CleanArchitecture.Web.ApiModels;
-using CleanArchitecture.Web.Filters;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using CleanArchitecture.Core;
+using Hogstorp.Core;
+using Hogstorp.Core.Entities;
+using Hogstorp.Core.Interfaces;
+using Hogstorp.Web.ApiModels;
+using Hogstorp.Web.Filters;
+using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitecture.Web.Api
+namespace Hogstorp.Web.Api
 {
     [Route("api/[controller]")]
     [ValidateModel]

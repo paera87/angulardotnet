@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { TodoComponent } from './todo/todo.component';
+import { PlayersComponent } from './players/players.component';
+import { TrainingsComponent } from './trainings/trainings.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TodoComponent } from './todo/todo.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    TodoComponent
+    TodoComponent,
+    PlayersComponent,
+    TrainingsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,6 +34,8 @@ import { TodoComponent } from './todo/todo.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'todo', component: TodoComponent },
+      { path: 'players', component: PlayersComponent },
+      { path: 'trainings', component: TrainingsComponent },
     ])
   ],
   providers: [],

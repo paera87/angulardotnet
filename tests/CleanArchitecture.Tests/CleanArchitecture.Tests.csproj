@@ -21,9 +21,9 @@
   </Target>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CleanArchitecture.Core\CleanArchitecture.Core.csproj" />
-    <ProjectReference Include="..\..\src\CleanArchitecture.Infrastructure\CleanArchitecture.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\src\CleanArchitecture.Web\CleanArchitecture.Web.csproj" />
+    <ProjectReference Include="..\..\src\CleanArchitecture.Core\Hogstorp.Core.csproj" />
+    <ProjectReference Include="..\..\src\CleanArchitecture.Infrastructure\Hogstorp.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\CleanArchitecture.Web\Hogstorp.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>

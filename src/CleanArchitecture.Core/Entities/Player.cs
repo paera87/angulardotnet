@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using CleanArchitecture.Core.Events;
-using CleanArchitecture.Core.SharedKernel;
+﻿using System.Collections.Generic;
+using Hogstorp.Core.SharedKernel;
 
-namespace CleanArchitecture.Core.Entities
+namespace Hogstorp.Core.Entities
 {
     public class Player : BaseEntity
     {

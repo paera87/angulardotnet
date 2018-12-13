@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CleanArchitecture.Infrastructure.Migrations
+namespace Hogstorp.Infrastructure.Migrations
 {
     public partial class InitialTraining : Migration
     {
