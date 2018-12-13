@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hogstorp.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181210134241_manytomanyfix")]
-    partial class manytomanyfix
+    [Migration("20181213101351_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Hogstorp.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CleanArchitecture.Core.Entities.Player", b =>
+            modelBuilder.Entity("Hogstorp.Core.Entities.Player", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,28 +36,22 @@ namespace Hogstorp.Infrastructure.Migrations
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Core.Entities.PlayerTraining", b =>
+            modelBuilder.Entity("Hogstorp.Core.Entities.PlayerTraining", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("PlayerId");
-
-                    b.Property<int>("Points");
 
                     b.Property<int>("TrainingId");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Points");
 
-                    b.HasIndex("PlayerId");
+                    b.HasKey("PlayerId", "TrainingId");
 
                     b.HasIndex("TrainingId");
 
                     b.ToTable("PlayerTrainings");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Core.Entities.ToDoItem", b =>
+            modelBuilder.Entity("Hogstorp.Core.Entities.ToDoItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,7 +68,7 @@ namespace Hogstorp.Infrastructure.Migrations
                     b.ToTable("ToDoItems");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Core.Entities.Training", b =>
+            modelBuilder.Entity("Hogstorp.Core.Entities.Training", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,14 +85,14 @@ namespace Hogstorp.Infrastructure.Migrations
                     b.ToTable("Trainings");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Core.Entities.PlayerTraining", b =>
+            modelBuilder.Entity("Hogstorp.Core.Entities.PlayerTraining", b =>
                 {
-                    b.HasOne("CleanArchitecture.Core.Entities.Player", "Player")
+                    b.HasOne("Hogstorp.Core.Entities.Player", "Player")
                         .WithMany("PlayerTrainings")
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("CleanArchitecture.Core.Entities.Training", "Training")
+                    b.HasOne("Hogstorp.Core.Entities.Training", "Training")
                         .WithMany("PlayersTrainings")
                         .HasForeignKey("TrainingId")
                         .OnDelete(DeleteBehavior.Cascade);
