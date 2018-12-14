@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Hogstorp.Core.Entities;
 using Hogstorp.Core.Interfaces;
 using Hogstorp.Core.SharedKernel;
 using Microsoft.EntityFrameworkCore;
@@ -20,9 +23,13 @@ namespace Hogstorp.Infrastructure.Data
             return await _dbContext.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task<List<T>> ListAsync<T>() where T : BaseEntity
+        public async Task<List<T>> ListAsync<T>(Func<IQueryable<T>, IQueryable<T>> func = null) where T : BaseEntity
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            DbSet<T> result = _dbContext.Set<T>();
+            if (func == null) return await _dbContext.Set<T>().ToListAsync();
+            IQueryable<T> additionalQueries = func(result);
+            return await additionalQueries.ToListAsync();
+
         }
 
         public async Task<T> AddAsync<T>(T entity) where T : BaseEntity

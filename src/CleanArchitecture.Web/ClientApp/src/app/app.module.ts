@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { TodoComponent } from './todo/todo.component';
 import { PlayersComponent } from './players/players.component';
 import { TrainingsComponent } from './trainings/trainings.component';
+import { MobxAngularModule } from 'mobx-angular';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TrainingsComponent } from './trainings/trainings.component';
       { path: 'todo', component: TodoComponent },
       { path: 'players', component: PlayersComponent },
       { path: 'trainings', component: TrainingsComponent },
-    ])
+    ]),
+    MobxAngularModule
   ],
   providers: [],
   bootstrap: [AppComponent]

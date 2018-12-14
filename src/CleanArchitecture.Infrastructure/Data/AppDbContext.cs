@@ -16,6 +16,7 @@ namespace Hogstorp.Infrastructure.Data
             : base(options)
         {
             _dispatcher = dispatcher;
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

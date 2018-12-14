@@ -1,3 +1,20 @@
-<p>
-  players works!
-</p>
+<div *mobxAutorun>
+  <table class="table" *ngIf="playerList">
+    <thead>
+      <tr>
+        <th (click)="sort('firstName')">Förnamn</th>
+        <th (click)="sort('lastName')">Efternamn</th>
+        <th>Antal Träningar</th>
+        <th (click)="sort('totalPoints')">Poäng</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of playerList">
+        <td>{{ player.firstName }}</td>
+        <td>{{ player.lastName }}</td>
+        <td>xx</td>
+        <td>{{player.totalPoints}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

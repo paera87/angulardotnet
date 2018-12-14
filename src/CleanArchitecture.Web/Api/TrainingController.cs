@@ -13,11 +13,11 @@ namespace Hogstorp.Web.Api
 {
     [Route("api/[controller]")]
     [ValidateModel]
-    public class PlayerController : Controller
+    public class TrainingController : Controller
     {
         private readonly IRepository _repository;
 
-        public PlayerController(IRepository repository)
+        public TrainingController(IRepository repository)
         {
             _repository = repository;
         }
@@ -26,16 +26,16 @@ namespace Hogstorp.Web.Api
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            await DatabasePopulator.PopulateDatabaseAsync(_repository);
-            var items = await _repository.ListAsync<Player>(x => x.Include(p => p.PlayerTrainings));
-            return Ok(items.Select(PlayerDto.FromToDoItem));
+            
+            var items = await _repository.ListAsync<Training>(x => x.Include(t => t.PlayersTrainings));
+            return Ok(items.Select(TrainingDto.FromToDoItem));
         }
 
         // GET: api/ToDoItems
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var item = PlayerDto.FromToDoItem(await _repository.GetByIdAsync<Player>(id));
+            var item = TrainingDto.FromToDoItem(await _repository.GetByIdAsync<Training>(id));
             return Ok(item);
         }
 

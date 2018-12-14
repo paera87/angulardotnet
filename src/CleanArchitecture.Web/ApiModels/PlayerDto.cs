@@ -1,4 +1,5 @@
-﻿using Hogstorp.Core.Entities;
+﻿using System.Linq;
+using Hogstorp.Core.Entities;
 
 namespace Hogstorp.Web.ApiModels
 {
@@ -8,7 +9,7 @@ namespace Hogstorp.Web.ApiModels
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        
+        public int? TotalPoints { get; set; }
 
         public static PlayerDto FromToDoItem(Player item)
         {
@@ -17,6 +18,7 @@ namespace Hogstorp.Web.ApiModels
                 Id = item.Id,
                 FirstName = item.FirstName,
                 LastName = item.LastName,
+                TotalPoints = item.PlayerTrainings?.Sum(x => x.Points) ?? 0
             };
         }
     }

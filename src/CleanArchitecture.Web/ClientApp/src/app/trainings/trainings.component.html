@@ -1,3 +1,20 @@
-<p>
-  trainings works!
-</p>
+<div *mobxAutorun>
+  <div class="header">
+    <h1>Träningar </h1>
+    <button type="button" class="btn btn-lg btn-primary float-right">Ny träning</button>
+  </div>
+  <div class="card-deck">
+    <div *ngFor="let training of trainings" class="card">
+      <img class="card-img-top" [src]="training.indoors == true ? 'assets/futsal.jpg' : 'assets/training.jpg'" alt="Card image cap" />
+      <div class="card-body">
+        <h5 class="card-title">{{training.date}}</h5>
+        <p class="card-text">
+          Plats: {{training.location}}
+          <br/>
+          Antal närvarande: {{training.numberOfPlayersPresent}}
+        </p>
+        <a href="#" class="btn btn-primary">Närvarolista</a>
+      </div>
+    </div>
+  </div>
+</div>
