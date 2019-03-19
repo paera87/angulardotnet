@@ -3,27 +3,26 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { PlayersComponentStore } from './players.component.store';
 import { action, computed } from 'mobx-angular';
-
 import { Player } from './player';
-
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-players',
   templateUrl: './players.component.html',
-  styleUrls: ['./players.component.css']
+  styleUrls: ['./players.component.scss']
 })
 export class PlayersComponent implements OnInit {
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string
-  , private playerStore:  PlayersComponentStore) {
+  constructor(private http: HttpClient,
+    @Inject('BASE_URL') private baseUrl: string
+    , private playerStore:  PlayersComponentStore) {
   }
 
   @action
   getPlayerList() {
     this.http.get<Player[]>(this.baseUrl + 'api/player').subscribe(result => {
       this.playerStore.setPlayerList(result);
-      console.log(this.playerStore.players);
+
     }, error => console.error(error));
   }
 

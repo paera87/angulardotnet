@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Hogstorp.Core;
@@ -28,6 +29,7 @@ namespace Hogstorp.Web.Api
         {
             
             var items = await _repository.ListAsync<Training>(x => x.Include(t => t.PlayersTrainings));
+            items = items.OrderByDescending(x => x.Date).ToList();
             return Ok(items.Select(TrainingDto.FromToDoItem));
         }
 
@@ -35,29 +37,31 @@ namespace Hogstorp.Web.Api
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var item = TrainingDto.FromToDoItem(await _repository.GetByIdAsync<Training>(id));
+            var item = TrainingDto.FromToDoItem(await _repository.FindAsync<Training>(id));
             return Ok(item);
         }
 
         // POST: api/ToDoItems
         //todo
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ToDoItemDTO item)
+        public async Task<IActionResult> Post([FromBody] TrainingDto item)
         {
-            var todoItem = new ToDoItem()
+            var training = new Training()
             {
-                Title = item.Title,
-                Description = item.Description
+                Location = item.Location,
+                Date = DateTime.Parse(item.Date),
+                Indoors = item.Indoors,
+                PlayersTrainings = null
             };
-            await _repository.AddAsync(todoItem);
-            return Ok(ToDoItemDTO.FromToDoItem(todoItem));
+            await _repository.AddAsync(training);
+            return Ok(TrainingDto.FromToDoItem(training));
         }
 
         //todo - add to training kanske.
         [HttpPatch("{id:int}/complete")]
         public async Task<IActionResult> Complete(int id)
         {
-            var toDoItem = await _repository.GetByIdAsync<ToDoItem>(id);
+            var toDoItem = await _repository.FindAsync<ToDoItem>(id);
             toDoItem.MarkComplete();
             await _repository.UpdateAsync(toDoItem);
 

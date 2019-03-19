@@ -1,5 +1,13 @@
-export interface Training {
-  id: number;
-  firstName: string;
-  lastName: string;
+
+export class Training {
+  location: string;
+  date: string;
+  indoors: boolean;
+
+  constructor(
+    // public date: string,
+    // public location: string,
+    // public indoors: boolean
+  ) {
+   }
 }

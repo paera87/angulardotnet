@@ -33,7 +33,7 @@ namespace Hogstorp.Web.Api
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var item = ToDoItemDTO.FromToDoItem(await _repository.GetByIdAsync<ToDoItem>(id));
+            var item = ToDoItemDTO.FromToDoItem(await _repository.FindAsync<ToDoItem>(id));
             return Ok(item);
         }
 
@@ -53,7 +53,7 @@ namespace Hogstorp.Web.Api
         [HttpPatch("{id:int}/complete")]
         public async Task<IActionResult> Complete(int id)
         {
-            var toDoItem = await _repository.GetByIdAsync<ToDoItem>(id);
+            var toDoItem = await _repository.FindAsync<ToDoItem>(id);
             toDoItem.MarkComplete();
             await _repository.UpdateAsync(toDoItem);
 

@@ -9,7 +9,7 @@ namespace Hogstorp.Core.Interfaces
 {
     public interface IRepository
     {
-        Task<T> GetByIdAsync<T>(int id) where T : BaseEntity;
+        Task<T> FindAsync<T>(int id) where T : BaseEntity;
         Task<List<T>> ListAsync<T>(Func<IQueryable<T>, IQueryable<T>> func = null) where T : BaseEntity;
         Task<T> AddAsync<T>(T entity) where T : BaseEntity;
         Task UpdateAsync<T>(T entity) where T : BaseEntity;

@@ -1,23 +1,22 @@
 import { observable, action, computed } from 'mobx-angular';
 import { Injectable } from '@angular/core';
 import { Player } from './player';
+import { createViewModel } from 'mobx-utils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayersComponentStore {
 
-  @observable playerList: Player[];
+  @observable private playerList: Player[];
   @observable public sortOrderAsc: boolean = true;
   @observable public sortProperty: string = '';
-  @computed
-  public get players(): Player[] {
-    return this.playerList;
-  }
+  @computed  public get players(): Player[] { return this.playerList; }
 
   @action
   setPlayerList(playerList: Player[]): void {
     this.playerList = playerList;
+    this.playerList = this.playerList.map(x => createViewModel(x))
   }
 
   @action
@@ -28,11 +27,10 @@ export class PlayersComponentStore {
       this.sortProperty = sortProperty;
       this.sortOrderAsc = true;
     }
-    this.sortEmployees();
+    this.sortPlayers();
   }
 
-
-  private sortEmployees() {
+  private sortPlayers() {
     switch (this.sortProperty) {
       case 'firstName':
       case 'lastName':

@@ -18,9 +18,9 @@ namespace Hogstorp.Infrastructure.Data
             _dbContext = dbContext;
         }
 
-        public async Task<T> GetByIdAsync<T>(int id) where T : BaseEntity
+        public async Task<T> FindAsync<T>(int id) where T : BaseEntity
         {
-            return await _dbContext.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
+            return await _dbContext.Set<T>().FindAsync(id);
         }
 
         public async Task<List<T>> ListAsync<T>(Func<IQueryable<T>, IQueryable<T>> func = null) where T : BaseEntity

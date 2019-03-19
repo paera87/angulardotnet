@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { TrainingsComponentStore } from './trainings.component.store';
 import { action, computed } from 'mobx-angular';
 import { Training } from './training';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TrainingModal } from './modal/training.modal';
+import { TrainingsApi } from './trainings.api';
 
 @Component({
   selector: 'app-trainings',
@@ -12,7 +15,9 @@ import { Training } from './training';
 export class TrainingsComponent implements OnInit {
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string
-  , private trainingStore:  TrainingsComponentStore) {
+  , private trainingStore:  TrainingsComponentStore
+  , private modalService: NgbModal
+  , private api: TrainingsApi) {
   }
 
   @computed
@@ -22,14 +27,16 @@ export class TrainingsComponent implements OnInit {
 
   @action
   getTrainingsList() {
-    this.http.get<Training[]>(this.baseUrl + 'api/training').subscribe(result => {
+    this.api.getTrainings().subscribe(result => {
       this.trainingStore.setTrainingList(result);
-      console.log(this.trainingStore.trainings);
     }, error => console.error(error));
   }
 
   ngOnInit() {
     this.getTrainingsList();
+  }
+  open() {
+    const modalRef = this.modalService.open(TrainingModal)
   }
 
 }
