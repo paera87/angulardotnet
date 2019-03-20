@@ -27,7 +27,7 @@ export class TrainingModal {
   {
     this.trainingsApi.addTraining(this.training).subscribe(training => {
         this.trainingStore.addTraining(training);
-        this.activeModal.close('Close click');
+        this.activeModal.close();
     }, error => console.log(error));
   }
 
