@@ -10,13 +10,21 @@ export class PlayersComponentStore {
 
   @observable private playerList: Player[];
   @observable public sortOrderAsc: boolean = true;
-  @observable public sortProperty: string = '';
+  @observable public sortProperty: string = 'lastName';
   @computed  public get players(): Player[] { return this.playerList; }
 
   @action
   setPlayerList(playerList: Player[]): void {
     this.playerList = playerList;
     this.playerList = this.playerList.map(x => createViewModel(x))
+    this.sortPlayers();
+  }
+
+  @action
+  addPlayer(player: Player): void {
+    player = observable(player);
+    this.playerList.push(createViewModel(player));
+    this.sortPlayers();
   }
 
   @action

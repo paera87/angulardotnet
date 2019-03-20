@@ -17,40 +17,39 @@ namespace Hogstorp.Web.Api
     {
         private readonly IRepository _repository;
 
+
         public PlayerController(IRepository repository)
         {
             _repository = repository;
         }
 
         // GET: api/ToDoItems
+
+
         [HttpGet]
         public async Task<IActionResult> List()
         {
             await DatabasePopulator.PopulateDatabaseAsync(_repository);
             var items = await _repository.ListAsync<Player>(x => x.Include(p => p.PlayerTrainings));
-            return Ok(items.Select(PlayerDto.FromToDoItem));
+            return Ok(items.Select(PlayerDto.FromEntity));
         }
 
         // GET: api/ToDoItems
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var item = PlayerDto.FromToDoItem(await _repository.FindAsync<Player>(id));
+            var item = PlayerDto.FromEntity(await _repository.FindAsync<Player>(id));
             return Ok(item);
         }
 
         // POST: api/ToDoItems
         //todo
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ToDoItemDTO item)
+        public async Task<IActionResult> Post([FromBody] PlayerDto item)
         {
-            var todoItem = new ToDoItem()
-            {
-                Title = item.Title,
-                Description = item.Description
-            };
-            await _repository.AddAsync(todoItem);
-            return Ok(ToDoItemDTO.FromToDoItem(todoItem));
+            var entity = PlayerDto.ToEntity(item);
+            await _repository.AddAsync(entity);
+            return Ok(PlayerDto.FromEntity(entity));
         }
 
         //todo - add to training kanske.

@@ -11,7 +11,7 @@ namespace Hogstorp.Web.ApiModels
         public string LastName { get; set; }
         public int? TotalPoints { get; set; }
 
-        public static PlayerDto FromToDoItem(Player item)
+        public static PlayerDto FromEntity(Player item)
         {
             return new PlayerDto()
             {
@@ -19,6 +19,16 @@ namespace Hogstorp.Web.ApiModels
                 FirstName = item.FirstName,
                 LastName = item.LastName,
                 TotalPoints = item.PlayerTrainings?.Sum(x => x.Points) ?? 0
+            };
+        }
+
+        public static Player ToEntity(PlayerDto item)
+        {
+            return new Player()
+            {
+                Id = item.Id,
+                FirstName = item.FirstName,
+                LastName = item.LastName,
             };
         }
     }

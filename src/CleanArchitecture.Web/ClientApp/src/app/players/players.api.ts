@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Player } from './player';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,14 @@ export class PlayersApiService{
 
   public getPlayers(): Observable<Player[]> {
     return this.http.get<Player[]>(this.baseUrl + 'api/player')
+  }
+
+  public addPlayer(player: Player): Observable<Player>{
+    return this.http.post<Player>(this.baseUrl + 'api/player', player)
+    .pipe(
+      catchError(val =>
+        throwError(`${val.status}: ${val.message}`)
+       )
+    );
   }
 }

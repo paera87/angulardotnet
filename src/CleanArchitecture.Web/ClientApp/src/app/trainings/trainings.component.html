@@ -6,7 +6,7 @@
     </button>
   </div>
   <div class="card-deck">
-    <div *ngFor="let training of trainings" class="card mb-3">
+    <div *ngFor="let training of trainings;trackBy: trackByFn" class="card mb-3">
       <img
         class="card-img-top"
         [src]="

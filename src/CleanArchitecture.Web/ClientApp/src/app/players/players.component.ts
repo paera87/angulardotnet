@@ -9,6 +9,8 @@ import { action, computed } from 'mobx-angular';
 import { Player } from './player';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { PlayersApiService } from './players.api';
+import { PlayerModal } from './modal/player.modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,6 +21,7 @@ import { PlayersApiService } from './players.api';
 export class PlayersComponent implements OnInit, OnDestroy {
   constructor(
     private api: PlayersApiService,
+    private modalService: NgbModal,
     private playerStore: PlayersComponentStore
   ) {}
 
@@ -44,9 +47,17 @@ export class PlayersComponent implements OnInit, OnDestroy {
     this.playerStore.setSortOrder(columnName);
   }
 
+  open() {
+    const modalRef = this.modalService.open(PlayerModal);
+  }
+
   ngOnInit() {
     this.getPlayerList();
   }
 
   ngOnDestroy(): void {}
+
+  trackByFn(index: any, item: any) {
+    return item.id;
+  }
 }

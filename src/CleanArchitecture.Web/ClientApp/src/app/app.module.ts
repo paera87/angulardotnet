@@ -14,6 +14,7 @@ import { TrainingsComponent } from './trainings/trainings.component';
 import { MobxAngularModule } from 'mobx-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TrainingModal } from './trainings/modal/training.modal';
+import { PlayerModal } from './players/modal/player.modal';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,12 @@ import { TrainingModal } from './trainings/modal/training.modal';
     TodoComponent,
     PlayersComponent,
     TrainingsComponent,
-    TrainingModal
+    TrainingModal,
+    PlayerModal
   ],
   entryComponents: [
-    TrainingModal
+    TrainingModal,
+    PlayerModal
   ],
   imports: [
     NgbModule.forRoot(),

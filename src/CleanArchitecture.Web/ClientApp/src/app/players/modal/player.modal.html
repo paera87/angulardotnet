@@ -4,36 +4,45 @@
     type="button"
     class="close"
     aria-label="Close"
-    (click)="activeModal.dismiss()"
+    (click)="activeModal.dismiss('')"
   >
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<form (ngSubmit)="onSubmit()" #trainingForm="ngForm">
+<form (ngSubmit)="onSubmit()" #playerForm="ngForm">
   <div class="modal-body">
-    <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd"
-                 name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-          </div>
-        </div>
-      </div>
 
     <div class="form-group">
-      <label for="location">Plats</label>
+      <label for="location">Förnamn</label>
       <input
         type="text"
         class="form-control"
-        id="location"
+        id="firstName"
         required
-        [(ngModel)]="training.location"
-        name="location"
-        #location="ngModel"
+        [(ngModel)]="player.firstName"
+        name="firstName"
+        #firstName="ngModel"
       />
       <div
-        [hidden]="location.valid || location.pristine"
+        [hidden]="firstName.valid || firstName.pristine"
+        class="alert alert-danger"
+      >
+        obligatoriskt fält
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Efternamn</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        required
+        [(ngModel)]="player.lastName"
+        name="lastName"
+        #lastName="ngModel"
+      />
+      <div
+        [hidden]="lastName.valid || lastName.pristine"
         class="alert alert-danger"
       >
         obligatoriskt fält
@@ -45,7 +54,7 @@
     <button
       type="submit"
       class="btn btn-outline-primary"
-      [disabled]="!trainingForm.form.valid"
+      [disabled]="!playerForm.form.valid"
     >
       Spara
     </button>

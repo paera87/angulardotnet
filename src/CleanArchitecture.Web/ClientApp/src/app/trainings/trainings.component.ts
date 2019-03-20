@@ -44,6 +44,11 @@ export class TrainingsComponent implements OnInit, OnDestroy {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
   }
+
+  trackByFn(index: any, item: any) {
+    return item.id;
+  }
+
   open() {
     const modalRef = this.modalService.open(TrainingModal);
   }
